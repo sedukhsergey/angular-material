@@ -1,0 +1,77 @@
+<form
+  [formGroup]="profileForm"
+  (ngSubmit)="submit()"
+>
+  <label>
+    First Name:
+    <input type="text" formControlName="firstName">
+  </label>
+  <label>
+    Last Name:
+    <input type="text" formControlName="lastName">
+  </label>
+  <div class="user-info" formGroupName="agreement">
+    <label>
+      Do you agree with a form?
+      <input type="checkbox" formControlName="isAgree">
+    </label>
+  </div>
+  <div formArrayName="filterOs">
+    <div *ngFor="let todo of profileForm.get('filterOs').value | keyvalue">
+      <label>
+        Todo: {{todo.key}}
+        <input type="checkbox" [formControlName]="todo.key" [value]="todo.value"/>
+      </label>
+    </div>
+  </div>
+  <button mat-raised-button color="primary" type="submit" #submitButton>Submit</button>
+</form>
+
+<p>
+  Button toggles badge visibility
+  <button mat-raised-button matBadge="7" [matBadgeHidden]="hidden" (click)="click()">
+    Skip
+  </button>
+</p>
+
+<section>
+  <div class="example-label">Raised</div>
+  <div class="example-button-row">
+    <button mat-raised-button>Basic</button>
+    <button mat-raised-button color="primary">Primary</button>
+    <button mat-raised-button color="accent">Accent</button>
+    <button mat-raised-button color="warn">
+      Warn   <mat-icon>computer</mat-icon>
+    </button>
+    <button mat-raised-button disabled>Disabled</button>
+    <a mat-raised-button href="https://www.google.com/" target="_blank">Link</a>
+  </div>
+</section>
+<mat-divider></mat-divider>
+<section>
+  <div class="example-label">FAB</div>
+  <div class="example-button-row">
+    <div class="example-flex-container">
+      <div class="example-button-container">
+        <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      <div class="example-button-container">
+        <button mat-fab color="accent" aria-label="Example icon button with a bookmark icon">
+          <mat-icon>bookmark</mat-icon>
+        </button>
+      </div>
+      <div class="example-button-container">
+        <button mat-fab color="warn" aria-label="Example icon button with a home icon">
+          <mat-icon>home</mat-icon>
+        </button>
+      </div>
+      <div class="example-button-container">
+        <button mat-fab disabled aria-label="Example icon button with a heart icon">
+          <mat-icon>favorite</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
